@@ -1,0 +1,34 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e1b4b;
+}
+
+.input {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 2px solid #c7d2fe;
+  border-radius: 10px;
+  font: inherit;
+  color: #1e1b4b;
+  background-color: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.counter {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
