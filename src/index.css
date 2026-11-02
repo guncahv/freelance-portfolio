@@ -1,0 +1,12 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background-color: #f5f5fb;
+  color: #1e1b4b;
+}
