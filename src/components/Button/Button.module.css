@@ -1,0 +1,57 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.1s;
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.button:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #4338ca;
+}
+
+/* делает белой иконку в основной кнопке */
+.primary .icon {
+  filter: invert(1);
+}
+
+.secondary {
+  background-color: transparent;
+  border-color: #4f46e5;
+  color: #4f46e5;
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: #eef2ff;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
