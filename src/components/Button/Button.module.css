@@ -1,57 +1,68 @@
+/* Button: Auto Layout горизонтальный, высота 48, отступы 24/20, gap 8, радиус 12 */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 10px 22px;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  font: inherit;
+  min-height: 48px;
+  padding: 12px 20px 12px 24px;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-control);
+  font-family: var(--font-body);
+  font-size: 16px;
   font-weight: 600;
+  line-height: 24px;
+  white-space: nowrap;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s, transform 0.1s;
-}
-
-.button:active:not(:disabled) {
-  transform: scale(0.97);
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
 .button:focus-visible {
-  outline: 3px solid #a5b4fc;
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
-.button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
+/* Primary: Default → Hover → Pressed */
 .primary {
-  background-color: #4f46e5;
-  color: #ffffff;
+  background-color: var(--brand-primary);
+  color: var(--neutral-0);
 }
 
 .primary:hover:not(:disabled) {
-  background-color: #4338ca;
+  background-color: var(--brand-primary-hover);
 }
 
-/* делает белой иконку в основной кнопке */
-.primary .icon {
-  filter: invert(1);
+.primary:active:not(:disabled) {
+  background-color: var(--brand-primary-pressed);
 }
 
+/* Secondary: Default → Hover → Pressed */
 .secondary {
-  background-color: transparent;
-  border-color: #4f46e5;
-  color: #4f46e5;
+  background-color: var(--neutral-0);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: #eef2ff;
+  background-color: var(--brand-primary-subtle);
 }
 
-.icon {
-  width: 18px;
-  height: 18px;
+.secondary:active:not(:disabled) {
+  background-color: var(--brand-primary-subtle);
+  border-color: var(--brand-primary-pressed);
+  color: var(--brand-primary-pressed);
+}
+
+/* Disabled */
+.button:disabled {
+  cursor: not-allowed;
+  color: var(--neutral-400);
+}
+
+.primary:disabled {
+  background-color: var(--neutral-200);
+}
+
+.secondary:disabled {
+  border-color: var(--neutral-200);
 }
