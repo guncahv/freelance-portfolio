@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Icon from '../Icon/Icon';
 import styles from './InputField.module.css';
 
 /**
- * Поле ввода. Своё значение хранит в локальном состоянии (useState)
+ * Поле ввода (State: Default / Focused / Error).
+ * Своё значение хранит в локальном состоянии (useState)
  * и сообщает о каждом изменении родителю через onValueChange.
  */
-function InputField({ id, label, placeholder = '', type = 'text', maxLength = 200, onValueChange }) {
+function InputField({ id, label, placeholder = '', type = 'text', icon = null, helperText = '', error = '', onValueChange }) {
   const [value, setValue] = useState('');
 
   const handleChange = (event) => {
@@ -17,23 +19,32 @@ function InputField({ id, label, placeholder = '', type = 'text', maxLength = 20
     }
   };
 
+  const hintId = `${id}-hint`;
+  const hint = error || helperText;
+
   return (
     <div className={styles.field}>
       <label htmlFor={id} className={styles.label}>
         {label}
       </label>
-      <input
-        id={id}
-        type={type}
-        className={styles.input}
-        value={value}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        onChange={handleChange}
-      />
-      <span className={styles.counter}>
-        {value.length} / {maxLength}
-      </span>
+      <div className={error ? `${styles.control} ${styles.error}` : styles.control}>
+        {icon && <Icon src={icon} />}
+        <input
+          id={id}
+          type={type}
+          className={styles.input}
+          value={value}
+          placeholder={placeholder}
+          onChange={handleChange}
+          aria-invalid={Boolean(error)}
+          aria-describedby={hint ? hintId : undefined}
+        />
+      </div>
+      {hint && (
+        <span id={hintId} className={error ? `${styles.hint} ${styles.hintError}` : styles.hint}>
+          {hint}
+        </span>
+      )}
     </div>
   );
 }
@@ -43,7 +54,9 @@ InputField.propTypes = {
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   type: PropTypes.oneOf(['text', 'email', 'tel']),
-  maxLength: PropTypes.number,
+  icon: PropTypes.string,
+  helperText: PropTypes.string,
+  error: PropTypes.string,
   onValueChange: PropTypes.func,
 };
 
