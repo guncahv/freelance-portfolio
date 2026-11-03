@@ -1,3 +1,4 @@
+/* Input Field: вертикальный Auto Layout (подпись, поле, подсказка), gap 6; поле высотой 48, радиус 12 */
 .field {
   display: flex;
   flex-direction: column;
@@ -6,29 +7,68 @@
 }
 
 .label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #1e1b4b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--neutral-900);
+}
+
+/* Default */
+.control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1.5px solid var(--neutral-300);
+  border-radius: var(--radius-control);
+  background-color: var(--neutral-0);
+  color: var(--neutral-400);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+/* Focused: обводка Brand/Primary + Focus/Ring */
+.control:focus-within {
+  border-color: var(--brand-primary);
+  box-shadow: var(--focus-ring);
+  color: var(--brand-primary);
+}
+
+/* Error: красная обводка, светлый фон, текст ошибки */
+.error,
+.error:focus-within {
+  border-color: var(--feedback-error);
+  background-color: var(--feedback-error-subtle);
+  color: var(--feedback-error);
+}
+
+.error:focus-within {
+  box-shadow: var(--focus-error-ring);
 }
 
 .input {
-  min-height: 44px;
-  padding: 10px 14px;
-  border: 2px solid #c7d2fe;
-  border-radius: 10px;
-  font: inherit;
-  color: #1e1b4b;
-  background-color: #ffffff;
-  transition: border-color 0.2s;
-}
-
-.input:focus {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 0;
+  border: none;
   outline: none;
-  border-color: #4f46e5;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--neutral-900);
 }
 
-.counter {
-  align-self: flex-end;
-  font-size: 0.8rem;
-  color: #6b7280;
+.input::placeholder {
+  color: var(--neutral-400);
+}
+
+.hint {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--neutral-600);
+}
+
+.hintError {
+  color: var(--feedback-error);
 }
