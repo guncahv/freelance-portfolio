@@ -1,17 +1,21 @@
 import PropTypes from 'prop-types';
+import Icon from '../Icon/Icon';
 import styles from './Button.module.css';
 
 /**
- * Кнопка. Текст, иконка, вариант оформления и обработчик клика
- * передаются через props.
+ * Кнопка дизайн-системы (Type: Primary / Secondary).
+ * Текст, иконка, вариант и обработчик клика передаются через props.
  */
 function Button({ label, onClick, variant = 'primary', icon = null, type = 'button', disabled = false }) {
-  const className = `${styles.button} ${styles[variant]}`;
-
   return (
-    <button type={type} className={className} onClick={onClick} disabled={disabled}>
-      {icon && <img src={icon} alt="" className={styles.icon} aria-hidden="true" />}
+    <button
+      type={type}
+      className={`${styles.button} ${styles[variant]}`}
+      onClick={onClick}
+      disabled={disabled}
+    >
       <span>{label}</span>
+      {icon && <Icon src={icon} />}
     </button>
   );
 }
